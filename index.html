@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Shree Jain Sangh South Africa</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background: #f2f2f2;
+      padding: 20px;
+    }
+
+    img.logo {
+      max-width: 120px;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      color: #4b2e83;
+    }
+
+    table {
+      width: 90%;
+      max-width: 800px;
+      margin: 20px auto;
+      border-collapse: collapse;
+      background: white;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    th,
+    td {
+      padding: 12px;
+      border: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #eee;
+    }
+
+    tr:hover {
+      background-color: #f9f9f9;
+    }
+
+    a {
+      text-decoration: none;
+      color: #333;
+    }
+
+    a:hover {
+      color: #4b2e83;
+    }
+  </style>
+</head>
+
+<body>
+  <img src="images/logo.jpeg" alt="Jain Sangh Logo" class="logo">
+  <h1>Shree Jain Sangh South Africa</h1>
+  <h1>Member List</h1>
+  <div id="list">
+    <table>
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Name</th>
+          <th>Phone</th>
+          <th>More details</th>
+        </tr>
+      </thead>
+      <tbody id="membersList">
+        <!-- Data from json pupulate here dynamically -->
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    fetch('data.json')
+      .then(response => response.json())
+      .then(data => {
+        const listDiv = document.getElementById('membersList'); //Table Body TBody
+
+        data.forEach(member => {
+          const tr = document.createElement('tr');
+          const cellId = document.createElement('td');
+          cellId.textContent = member.Id;
+          tr.appendChild(cellId);
+          const cellName = document.createElement('td');
+          cellName.textContent = member.NameSurname;
+          tr.appendChild(cellName);
+
+          const cellPhone = document.createElement('td');
+          cellPhone.textContent = member.ContactNumber;
+          tr.appendChild(cellPhone);
+
+          const link = document.createElement('a');
+          link.href = `detail.html?id=${member.Id}`;
+          link.textContent = 'Click';
+          link.style.display = 'block';
+          const cell = document.createElement('td');
+          cell.appendChild(link);
+
+          tr.appendChild(cell);
+          listDiv.appendChild(tr);
+        });
+      });
+  </script>
+</body>
+
+</html>
