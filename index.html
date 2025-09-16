@@ -1,111 +1,55 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Shree Jain Sangh South Africa</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jain Sangh South Africa</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      background: #f2f2f2;
-      padding: 20px;
-    }
-
-    img.logo {
-      max-width: 120px;
-      margin-bottom: 20px;
-    }
-
-    h1 {
-      color: #4b2e83;
-    }
-
-    table {
-      width: 90%;
-      max-width: 800px;
-      margin: 20px auto;
-      border-collapse: collapse;
-      background: white;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-    }
-
-    th,
-    td {
-      padding: 12px;
-      border: 1px solid #ddd;
-    }
-
-    th {
-      background-color: #eee;
-    }
-
-    tr:hover {
-      background-color: #f9f9f9;
-    }
-
-    a {
-      text-decoration: none;
-      color: #333;
-    }
-
-    a:hover {
-      color: #4b2e83;
-    }
+    body { font-family: 'Segoe UI', sans-serif; margin: 0; padding: 0; background: #ffffff; }
+    header { background: #f5f5f5; color: #333; padding: 20px; text-align: center; }
+    nav { background: #e0e0e0; padding: 10px; text-align: center; }
+    nav a { color: #333; margin: 0 15px; text-decoration: none; font-weight: bold; }
+    section { padding: 20px; }
+    footer { background: #f5f5f5; text-align: center; padding: 10px; font-size: 0.9em; color: #666; }
+    img.logo { max-height: 80px; margin-bottom: 10px; }
   </style>
 </head>
-
 <body>
-  <img src="images/logo.jpeg" alt="Jain Sangh Logo" class="logo">
-  <h1>Shree Jain Sangh South Africa</h1>
-  <h1>Member List</h1>
-  <div id="list">
-    <table>
-      <thead>
-        <tr>
-          <th>Id</th>
-          <th>Name</th>
-          <th>Phone</th>
-          <th>More details</th>
-        </tr>
-      </thead>
-      <tbody id="membersList">
-        <!-- Data from json pupulate here dynamically -->
-      </tbody>
-    </table>
-  </div>
 
-  <script>
-    fetch('data.json')
-      .then(response => response.json())
-      .then(data => {
-        const listDiv = document.getElementById('membersList'); //Table Body TBody
+  <header>
+    <img src="images\logo.jpeg" alt="Jain Sangh Logo" class="logo" />
+    <h1>Welcome to Jain Sangh South Africa</h1>
+    <p>Promoting Ahimsa, Truth, and Spiritual Growth</p>
+  </header>
 
-        data.forEach(member => {
-          const tr = document.createElement('tr');
-          const cellId = document.createElement('td');
-          cellId.textContent = member.Id;
-          tr.appendChild(cellId);
-          const cellName = document.createElement('td');
-          cellName.textContent = member.NameSurname;
-          tr.appendChild(cellName);
+  <nav>
+    <a href="#about">About</a>
+    <a href="#events">Events</a>
+    <a href="#contact">Contact</a>
+  </nav>
 
-          const cellPhone = document.createElement('td');
-          cellPhone.textContent = member.ContactNumber;
-          tr.appendChild(cellPhone);
+  <section id="about">
+    <h2>About Us</h2>
+    <p>Jain Sangh South Africa is a spiritual and cultural community dedicated to the teachings of Lord Mahavir. We aim to foster unity, compassion, and ethical living through regular Navkar Mantra Jaap, educational programs (Digital Jain Pathshala), and community service.</p>
+  </section>
 
-          const link = document.createElement('a');
-          link.href = `detail.html?id=${member.Id}`;
-          link.textContent = 'Click';
-          link.style.display = 'block';
-          const cell = document.createElement('td');
-          cell.appendChild(link);
+  <section id="events">
+    <h2>Upcoming Events</h2>
+    <ul>
+      <li><strong>Monthly Navkar Mantra Jaap:</strong> First Sunday of every month</li>
+      <li><strong>Gaushala Visit:</strong> October 12 2025</li>
+    </ul>
+  </section>
 
-          tr.appendChild(cell);
-          listDiv.appendChild(tr);
-        });
-      });
-  </script>
+  <section id="contact">
+    <h2>Contact Us</h2>
+    <p>Email: <a href="mailto:sa.jainsangh@gmail.com">sa.jainsangh@gmail.com</a></p>
+    <p>Location: Johannesburg Jain Temple, Gauteng</p>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Jain Sangh. All rights reserved.</p>
+  </footer>
+
 </body>
-
 </html>
