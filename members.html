@@ -4,8 +4,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Jain Sangh South Africa - Members</title>
+  <title>Jain Sangh South Africa - Members Directory</title>
+  <meta name="description" content="Explore the members of Jain Sangh South Africa. Find contact information, professions, and connect with our Jain community across South Africa." />
+  <meta name="keywords" content="Jain Sangh South Africa, Jain members, Jain community, South Africa Jains, Jain directory, Jain families" />
+  <link rel="canonical" href="https://jainsangh.co.za/members.html" />
   <link rel="stylesheet" href="style.css" />
+
   <style>
     mark {
       background-color: yellow;
@@ -17,42 +21,64 @@
       width: 300px;
     }
   </style>
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      "name": "Jain Sangh South Africa Members Directory",
+      "url": "https://jainsangh.co.za/members.html",
+      "itemListElement": []
+    }
+  </script>
 </head>
 
 <body>
+  <!-- Header -->
   <header>
     <div class="header-content">
-      <img src="images/logo.jpg" alt="Logo" class="logo">
+      <img src="images/logo.jpg" alt="Jain Sangh South Africa Logo" class="logo">
       <h1>🕉 Jain Sangh South Africa</h1>
     </div>
     <p>“Live and let live — the essence of Jainism.”</p>
   </header>
 
-  <nav>
+  <!-- Navigation -->
+  <nav aria-label="Main Navigation">
     <a href="index.html">Home</a>
-    <a href="members.html">Members</a>
+    <a href="members.html" aria-current="page">Members</a>
   </nav>
 
-  <section>
-    <h2>Our Members</h2>
+  <!-- Main Section -->
+  <main>
+    <section>
+      <h2>Our Members Directory</h2>
+      <p>Search and explore the members of Jain Sangh South Africa. Connect with families and professionals dedicated to Jain values of Ahimsa, Satya, and Dharma.</p>
 
-    <!-- Search bar -->
-    <input type="text" id="searchInput" placeholder="Search members..." />
+      <!-- Search bar -->
+      <label for="searchInput">Search Members:</label>
+      <input type="text" id="searchInput" placeholder="Search members..." />
 
-    <table>
-      <thead>
-        <tr>
-          <th>#</th>
-          <th>Name</th>
-          <th>Date of Birth</th>
-          <th>Contact</th>
-          <th>Profession</th>
-          <th>Details</th>
-        </tr>
-      </thead>
-      <tbody id="membersTable"></tbody>
-    </table>
-  </section>
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Date of Birth</th>
+            <th>Contact</th>
+            <th>Profession</th>
+            <th>Details</th>
+          </tr>
+        </thead>
+        <tbody id="membersTable">
+          <tr>
+            <td colspan="6">Loading members...</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
 
   <!-- Footer -->
   <footer>
@@ -87,12 +113,10 @@
     // Render table function
     function renderTable(data, searchTerm = '') {
       membersTable.innerHTML = '';
-
       if (data.length === 0) {
         membersTable.innerHTML = '<tr><td colspan="6">No results found</td></tr>';
         return;
       }
-
       data.forEach(member => {
         const row = document.createElement('tr');
         row.innerHTML = `
@@ -101,7 +125,7 @@
           <td>${highlight(member.DateofBirth, searchTerm)}</td>
           <td>${highlight(member.ContactNumber || member.ContactEmail, searchTerm)}</td>
           <td>${highlight(member.Profession || '-', searchTerm)}</td>
-          <td><a href="member-detail.html?id=${member.Id}">View Details</a></td>
+          <td><a href="member-detail.html?id=${member.Id}" title="View details of ${member.NameSurname}">View Details</a></td>
         `;
         membersTable.appendChild(row);
       });
