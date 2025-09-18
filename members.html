@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jain Sangh South Africa - Members</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    mark {
+      background-color: yellow;
+    }
+
+    #searchInput {
+      margin-bottom: 15px;
+      padding: 5px;
+      width: 300px;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="header-content">
+      <img src="images/logo.jpg" alt="Logo" class="logo">
+      <h1>🕉 Jain Sangh South Africa</h1>
+    </div>
+    <p>“Live and let live — the essence of Jainism.”</p>
+  </header>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="members.html">Members</a>
+  </nav>
+
+  <section>
+    <h2>Our Members</h2>
+
+    <!-- Search bar -->
+    <input type="text" id="searchInput" placeholder="Search members..." />
+
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Name</th>
+          <th>Date of Birth</th>
+          <th>Contact</th>
+          <th>Profession</th>
+          <th>Details</th>
+        </tr>
+      </thead>
+      <tbody id="membersTable"></tbody>
+    </table>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    &copy; 2025 Jain Sangh South Africa — Jai Jinendra 🪷
+    <p>
+      <a href="https://www.facebook.com/share/1BD9UzPHHy/" target="_blank" aria-label="Facebook">
+        <img src="images/icons/facebook.svg" alt="Facebook">
+      </a>
+      <a href="https://www.instagram.com/southafricajainsangh/" target="_blank" aria-label="Instagram">
+        <img src="images/icons/instagram.svg" alt="Instagram">
+      </a>
+    </p>
+  </footer>
+
+  <script>
+    const searchInput = document.getElementById('searchInput');
+    const membersTable = document.getElementById('membersTable');
+    let membersData = [];
+
+    // Load members.json
+    fetch('data/members.json')
+      .then(res => res.json())
+      .then(data => {
+        membersData = data;
+        renderTable(membersData);
+      })
+      .catch(err => {
+        console.error('Error loading members.json', err);
+        membersTable.innerHTML = '<tr><td colspan="6">Failed to load members</td></tr>';
+      });
+
+    // Render table function
+    function renderTable(data, searchTerm = '') {
+      membersTable.innerHTML = '';
+
+      if (data.length === 0) {
+        membersTable.innerHTML = '<tr><td colspan="6">No results found</td></tr>';
+        return;
+      }
+
+      data.forEach(member => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td>${highlight(member.Id, searchTerm)}</td>
+          <td>${highlight(member.NameSurname, searchTerm)}</td>
+          <td>${highlight(member.DateofBirth, searchTerm)}</td>
+          <td>${highlight(member.ContactNumber || member.ContactEmail, searchTerm)}</td>
+          <td>${highlight(member.Profession || '-', searchTerm)}</td>
+          <td><a href="member-detail.html?id=${member.Id}">View Details</a></td>
+        `;
+        membersTable.appendChild(row);
+      });
+    }
+
+    // Highlight matched text
+    function highlight(text, term) {
+      if (!term) return text;
+      return text.toString().replace(new RegExp(term, 'gi'), match => `<mark>${match}</mark>`);
+    }
+
+    // Search event
+    searchInput.addEventListener('input', () => {
+      const term = searchInput.value.trim().toLowerCase();
+      const filtered = membersData.filter(member =>
+        member.NameSurname.toLowerCase().includes(term) ||
+        (member.ContactNumber && member.ContactNumber.toLowerCase().includes(term)) ||
+        (member.ContactEmail && member.ContactEmail.toLowerCase().includes(term)) ||
+        (member.Profession && member.Profession.toLowerCase().includes(term)) ||
+        member.DateofBirth.toLowerCase().includes(term) ||
+        member.Id.toString().includes(term)
+      );
+      renderTable(filtered, term);
+    });
+  </script>
+</body>
+
+</html>
