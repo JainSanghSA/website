@@ -5,8 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Jain Sangh South Africa - Members Directory</title>
-  <meta name="description"
-    content="Explore the members of Jain Sangh South Africa. Find contact information, professions, and connect with our Jain community across South Africa." />
+  <meta name="description" content="Explore the members of Jain Sangh South Africa. Find contact information, professions, and connect with our Jain community across South Africa." />
   <link rel="stylesheet" href="style.css" />
 </head>
 
@@ -39,25 +38,23 @@
       <label for="searchInput">Search Members:</label>
       <input type="text" id="searchInput" placeholder="Search members..." />
 
-      <div class="table-wrapper">
-        <table>
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Name</th>
-              <th>Date of Birth</th>
-              <th>Contact</th>
-              <th>Profession</th>
-              <th>Details</th>
-            </tr>
-          </thead>
-          <tbody id="membersTable">
-            <tr>
-              <td colspan="6">Loading members...</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Date of Birth</th>
+            <th>Contact</th>
+            <th>Profession</th>
+            <th>Details</th>
+          </tr>
+        </thead>
+        <tbody id="membersTable">
+          <tr>
+            <td colspan="6">Loading members...</td>
+          </tr>
+        </tbody>
+      </table>
     </section>
   </main>
 
@@ -99,12 +96,12 @@
       data.forEach(member => {
         const row = document.createElement('tr');
         row.innerHTML = `
-          <td data-label="#">${highlight(member.Id, searchTerm)}</td>
-          <td data-label="Name">${highlight(member.NameSurname, searchTerm)}</td>
-          <td data-label="Date of Birth">${highlight(member.DateofBirth, searchTerm)}</td>
-          <td data-label="Contact">${highlight(member.ContactNumber || member.ContactEmail, searchTerm)}</td>
-          <td data-label="Profession">${highlight(member.Profession || '-', searchTerm)}</td>
-          <td data-label="Details"><a href="member-detail.html?id=${member.Id}" title="View details of ${member.NameSurname}" class="member-link">View Details</a></td>
+          <td>${highlight(member.Id, searchTerm)}</td>
+          <td>${highlight(member.NameSurname, searchTerm)}</td>
+          <td>${highlight(member.DateofBirth, searchTerm)}</td>
+          <td>${highlight(member.ContactNumber || member.ContactEmail, searchTerm)}</td>
+          <td>${highlight(member.Profession || '-', searchTerm)}</td>
+          <td><a href="member-detail.html?id=${member.Id}" title="View details of ${member.NameSurname}" class="member-link">View Details</a></td>
         `;
         membersTable.appendChild(row);
       });

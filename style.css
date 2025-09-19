@@ -36,19 +36,25 @@ header {
 
 .header-content .logo {
   width: 80px;
-  height: auto;
+  height: 80px;
+  object-fit: cover;
   border-radius: 50%;
 }
 
-.header-text h1 {
+.header-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+header h1 {
   margin: 0;
   font-size: 2.5rem;
 }
 
-.header-text .tagline {
+header .tagline {
   font-style: italic;
   margin-top: 0.5rem;
-  font-size: 1rem;
 }
 
 /* =========================
@@ -77,9 +83,8 @@ nav.main-nav a:focus {
   outline: none;
 }
 
-nav.main-nav a:focus {
-  outline: 2px dashed #8b5e00;
-  outline-offset: 4px;
+nav.main-nav a[aria-current="page"] {
+  text-decoration: underline;
 }
 
 /* =========================
@@ -169,10 +174,6 @@ ul li::before {
 /* =========================
    Table Styling
 ========================= */
-.table-wrapper {
-  overflow-x: auto;
-}
-
 table {
   width: 100%;
   border-collapse: collapse;
@@ -209,20 +210,18 @@ tr:nth-child(even) {
 /* =========================
    Buttons
 ========================= */
-.btn,
-.back-link {
+.btn {
   display: inline-block;
   background-color: #f6e7b4;
   color: #5a3c00;
-  padding: 10px 20px;
+  padding: 12px 25px;
   text-decoration: none;
   font-weight: bold;
   border-radius: 8px;
   transition: 0.3s;
 }
 
-.btn:hover,
-.back-link:hover {
+.btn:hover {
   background-color: #e9d490;
 }
 
@@ -260,9 +259,7 @@ footer .social-icons a img:focus {
   filter: brightness(1.2);
 }
 
-/* =========================
-   Highlight
-========================= */
+/* Highlight */
 mark {
   background-color: yellow;
 }
@@ -289,7 +286,6 @@ mark {
     gap: 1rem;
   }
 
-  /* Responsive table */
   table, thead, tbody, th, td, tr {
     display: block;
   }
@@ -317,36 +313,6 @@ mark {
     font-weight: bold;
     color: #5a3c00;
   }
-
-  /* Mobile-friendly member-detail card */
-  .member-card {
-    display: block;
-    padding: 15px;
-  }
-
-  .member-card p {
-    display: flex;
-    justify-content: space-between;
-    padding: 8px 0;
-    border-bottom: 1px solid #eee;
-    margin: 0;
-  }
-
-  .member-card p:last-child {
-    border-bottom: none;
-  }
-
-  .member-card p strong {
-    flex: 0 0 40%;
-    color: #5a3c00;
-    font-weight: bold;
-  }
-
-  .member-card p span {
-    flex: 1;
-    text-align: right;
-    word-wrap: break-word;
-  }
 }
 
 @media (max-width: 480px) {
@@ -363,5 +329,18 @@ mark {
   footer .social-icons a img {
     width: 28px;
     height: 28px;
+  }
+
+  .member-card {
+    grid-template-columns: 1fr;
+    gap: 8px 10px;
+  }
+
+  .member-card p strong {
+    white-space: normal;
+  }
+
+  .member-card p span {
+    word-wrap: break-word;
   }
 }
