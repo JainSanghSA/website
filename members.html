@@ -6,32 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Jain Sangh South Africa - Members Directory</title>
   <meta name="description" content="Explore the members of Jain Sangh South Africa. Find contact information, professions, and connect with our Jain community across South Africa." />
-  <meta name="keywords" content="Jain Sangh South Africa, Jain members, Jain community, South Africa Jains, Jain directory, Jain families" />
-  <link rel="canonical" href="https://jainsangh.co.za/members.html" />
   <link rel="stylesheet" href="style.css" />
-
-  <style>
-    mark {
-      background-color: yellow;
-    }
-
-    #searchInput {
-      margin-bottom: 15px;
-      padding: 5px;
-      width: 300px;
-    }
-  </style>
-
-  <!-- Structured Data -->
-  <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "ItemList",
-      "name": "Jain Sangh South Africa Members Directory",
-      "url": "https://jainsangh.co.za/members.html",
-      "itemListElement": []
-    }
-  </script>
 </head>
 
 <body>
@@ -39,7 +14,7 @@
   <header>
     <div class="header-content">
       <img src="images/logo.jpg" alt="Jain Sangh South Africa Logo" class="logo">
-      <h1>🕉 Jain Sangh South Africa</h1>
+      <h1>Jain Sangh South Africa</h1>
     </div>
     <p>“Live and let live — the essence of Jainism.”</p>
   </header>
@@ -54,7 +29,8 @@
   <main>
     <section>
       <h2>Our Members Directory</h2>
-      <p>Search and explore the members of Jain Sangh South Africa. Connect with families and professionals dedicated to Jain values of Ahimsa, Satya, and Dharma.</p>
+      <p>Search and explore the members of Jain Sangh South Africa. Connect with families and professionals dedicated
+        to Jain values of Ahimsa, Satya, and Dharma.</p>
 
       <!-- Search bar -->
       <label for="searchInput">Search Members:</label>
@@ -83,14 +59,14 @@
   <!-- Footer -->
   <footer>
     &copy; 2025 Jain Sangh South Africa — Jai Jinendra 🪷
-    <p>
+    <div class="social-icons">
       <a href="https://www.facebook.com/share/1BD9UzPHHy/" target="_blank" aria-label="Facebook">
         <img src="images/icons/facebook.svg" alt="Facebook">
       </a>
       <a href="https://www.instagram.com/southafricajainsangh/" target="_blank" aria-label="Instagram">
         <img src="images/icons/instagram.svg" alt="Instagram">
       </a>
-    </p>
+    </div>
   </footer>
 
   <script>
@@ -98,7 +74,6 @@
     const membersTable = document.getElementById('membersTable');
     let membersData = [];
 
-    // Load members.json
     fetch('data/members.json')
       .then(res => res.json())
       .then(data => {
@@ -110,7 +85,6 @@
         membersTable.innerHTML = '<tr><td colspan="6">Failed to load members</td></tr>';
       });
 
-    // Render table function
     function renderTable(data, searchTerm = '') {
       membersTable.innerHTML = '';
       if (data.length === 0) {
@@ -125,19 +99,17 @@
           <td>${highlight(member.DateofBirth, searchTerm)}</td>
           <td>${highlight(member.ContactNumber || member.ContactEmail, searchTerm)}</td>
           <td>${highlight(member.Profession || '-', searchTerm)}</td>
-          <td><a href="member-detail.html?id=${member.Id}" title="View details of ${member.NameSurname}">View Details</a></td>
+          <td><a href="member-detail.html?id=${member.Id}" title="View details of ${member.NameSurname}" class="member-link">View Details</a></td>
         `;
         membersTable.appendChild(row);
       });
     }
 
-    // Highlight matched text
     function highlight(text, term) {
       if (!term) return text;
       return text.toString().replace(new RegExp(term, 'gi'), match => `<mark>${match}</mark>`);
     }
 
-    // Search event
     searchInput.addEventListener('input', () => {
       const term = searchInput.value.trim().toLowerCase();
       const filtered = membersData.filter(member =>

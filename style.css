@@ -1,12 +1,24 @@
+/* =========================
+   Base Styles
+========================= */
 body {
   margin: 0;
+  padding: 0;
   font-family: Arial, sans-serif;
   background: #fffdf8;
   color: #333;
   line-height: 1.6;
-  /* Removed opacity and transition for smooth fade */
 }
 
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* =========================
+   Header
+========================= */
 header {
   background: #f6e7b4;
   color: #5a3c00;
@@ -19,6 +31,7 @@ header {
   align-items: center;
   justify-content: center;
   gap: 15px;
+  flex-wrap: wrap;
 }
 
 .header-content .logo {
@@ -37,86 +50,132 @@ header p {
   margin-top: 0.5rem;
 }
 
+/* =========================
+   Navigation
+========================= */
 nav {
   background: #f1d179;
   display: flex;
   justify-content: center;
   gap: 2rem;
   padding: 1rem;
+  flex-wrap: wrap;
 }
 
 nav a {
   text-decoration: none;
-  /* remove underline */
   color: #5a3c00;
   font-weight: bold;
+  transition: color 0.3s, transform 0.3s;
 }
 
-footer {
-  background: #f6e7b4;
-  text-align: center;
-  padding: 1.5rem 1rem;
-  margin-top: 2rem;
-  font-size: 0.9rem;
-  color: #5a3c00;
+nav a:hover,
+nav a:focus {
+  color: #c19700;
+  transform: scale(1.05);
+  outline: none;
 }
 
-footer a {
-  text-decoration: none;
-  /* remove underline for links */
+nav a:focus {
+  outline: 2px dashed #8b5e00;
+  outline-offset: 4px;
 }
 
-footer a img {
-  width: 24px;
-  height: 24px;
-  margin: 0 5px;
-  transition: transform 0.3s, filter 0.3s;
-  vertical-align: middle;
-  /* align icon properly */
-}
-
-footer a img:hover {
-  transform: scale(1.2);
-  filter: brightness(1.2);
-}
-
+/* =========================
+   Sections & Cards
+========================= */
 section {
   max-width: 1000px;
-  margin: auto;
+  margin: 2rem auto;
   padding: 2rem 1rem;
 }
 
+.intro-card,
+.member-card {
+  background: #fff8e1;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  font-size: 1.1rem;
+}
+
+/* Intro card highlighted text */
+.intro-card strong {
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+
+/* =========================
+   Member-detail card grid
+========================= */
+.member-card {
+  display: grid;
+  grid-template-columns: max-content 1fr; /* first column fits content, second takes remaining */
+  gap: 10px 20px;
+}
+
+.member-card p {
+  margin: 0;
+  display: contents; /* allow children to participate in grid */
+}
+
+.member-card p strong {
+  grid-column: 1; /* first column */
+  color: #5a3c00;
+  white-space: nowrap; /* prevent label wrapping */
+}
+
+.member-card p span {
+  grid-column: 2; /* second column */
+  word-wrap: break-word; /* allow value to wrap */
+}
+
+/* =========================
+   Headings
+========================= */
 h2 {
   color: #8b5e00;
   border-bottom: 2px solid #f1d179;
   padding-bottom: 0.3rem;
+  margin-bottom: 1rem;
 }
 
+/* Lists */
 ul {
   list-style: none;
   padding: 0;
 }
 
+ul li {
+  position: relative;
+  padding-left: 1.2em;
+  margin-bottom: 0.5rem;
+}
+
 ul li::before {
   content: "✦ ";
   color: #c19700;
+  position: absolute;
+  left: 0;
+  top: 0;
 }
 
+/* Center class */
 .center {
   text-align: center;
 }
 
-
-
-/* Table styling */
+/* =========================
+   Table Styling
+========================= */
 table {
   width: 100%;
   border-collapse: collapse;
   margin: 20px 0;
 }
 
-th,
-td {
+th, td {
   border: 1px solid #ccc;
   padding: 10px;
   text-align: left;
@@ -126,11 +185,146 @@ th {
   background-color: #f2f2f2;
 }
 
+tr:nth-child(even) {
+  background: #faf7ef;
+}
+
 .member-link {
   color: #007bff;
   text-decoration: none;
+  transition: color 0.3s;
 }
 
-.member-link:hover {
+.member-link:hover,
+.member-link:focus {
   text-decoration: underline;
+  color: #0056b3;
+  outline: none;
+}
+
+/* =========================
+   Buttons
+========================= */
+.btn {
+  display: inline-block;
+  background-color: #f6e7b4;
+  color: #5a3c00;
+  padding: 12px 25px;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 8px;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  background-color: #e9d490;
+}
+
+/* =========================
+   Footer
+========================= */
+footer {
+  background: #f6e7b4;
+  text-align: center;
+  padding: 1.5rem 1rem;
+  font-size: 0.9rem;
+  color: #5a3c00;
+}
+
+footer a {
+  text-decoration: none;
+}
+
+footer .social-icons {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+footer .social-icons a img {
+  width: 24px;
+  height: 24px;
+  transition: transform 0.3s, filter 0.3s;
+}
+
+footer .social-icons a img:hover,
+footer .social-icons a img:focus {
+  transform: scale(1.2);
+  filter: brightness(1.2);
+}
+
+/* =========================
+   Highlight
+========================= */
+mark {
+  background-color: yellow;
+}
+
+/* =========================
+   Responsive
+========================= */
+@media (max-width: 768px) {
+  section {
+    padding: 1.5rem;
+  }
+
+  .header-content {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  header h1 {
+    font-size: 2rem;
+  }
+
+  nav {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  table, thead, tbody, th, td, tr {
+    display: block;
+  }
+
+  thead tr { display: none; }
+
+  tr {
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px;
+    background: #fff;
+  }
+
+  td {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px;
+    border: none;
+    border-bottom: 1px solid #eee;
+  }
+
+  td::before {
+    content: attr(data-label);
+    font-weight: bold;
+    color: #5a3c00;
+  }
+}
+
+@media (max-width: 480px) {
+  footer {
+    font-size: 0.85rem;
+    padding: 1rem 0.5rem;
+  }
+
+  footer .social-icons {
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+
+  footer .social-icons a img {
+    width: 28px;
+    height: 28px;
+  }
 }

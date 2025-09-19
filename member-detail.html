@@ -7,67 +7,48 @@
   <title>Jain Sangh South Africa - Member Detail</title>
   <meta name="description"
     content="Detailed information about members of Jain Sangh South Africa including contact, profession, family details, and more." />
-  <meta name="keywords"
-    content="Jain Sangh South Africa members, Jain community, member details, Jain families, South Africa Jains" />
-  <link rel="canonical" href="https://jainsangh.co.za/member-detail.html" />
   <link rel="stylesheet" href="style.css" />
-  <style>
-    /* Keep your existing CSS here (card style, header, footer, responsive) */
-  </style>
 </head>
 
 <body>
+  <!-- Header -->
   <header>
     <div class="header-content">
       <img src="images/logo.jpg" alt="Jain Sangh South Africa Logo" class="logo">
-      <h1>🕉 Jain Sangh South Africa</h1>
+      <h1>Jain Sangh South Africa</h1>
     </div>
     <p>“Live and let live — the essence of Jainism.”</p>
   </header>
 
+  <!-- Navigation -->
   <nav aria-label="Main Navigation">
     <a href="index.html">Home</a>
     <a href="members.html">Members</a>
   </nav>
 
+  <!-- Main Section -->
   <main>
     <section id="memberDetailSection">
-      <h2 style="text-align:center;">Member Details</h2>
-      <article id="memberDetail">
+      <h2>Member Details</h2>
+      <div id="memberDetail" class="member-card">
         <p>Loading member information...</p>
-      </article>
+      </div>
       <p class="center"><a href="members.html">← Back to Members List</a></p>
     </section>
   </main>
 
+  <!-- Footer -->
   <footer>
     &copy; 2025 Jain Sangh South Africa — Jai Jinendra 🪷
-    <p>
+    <div class="social-icons">
       <a href="https://www.facebook.com/share/1BD9UzPHHy/" target="_blank" aria-label="Facebook">
         <img src="images/icons/facebook.svg" alt="Facebook">
       </a>
       <a href="https://www.instagram.com/southafricajainsangh/" target="_blank" aria-label="Instagram">
         <img src="images/icons/instagram.svg" alt="Instagram">
       </a>
-    </p>
+    </div>
   </footer>
-
-  <!-- Structured Data for SEO -->
-  <script type="application/ld+json" id="memberSchema">
-    {
-      "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "",
-      "url": "https://jainsangh.co.za/member-detail.html",
-      "jobTitle": "",
-      "birthDate": "",
-      "address": "",
-      "telephone": "",
-      "email": "",
-      "spouse": "",
-      "children": []
-    }
-  </script>
 
   <script>
     const urlParams = new URLSearchParams(window.location.search);
@@ -81,40 +62,21 @@
 
         if (member) {
           container.innerHTML = `
-            <div class="member-card">
-              <p><strong>Name:</strong> ${member.NameSurname}</p>
-              <p><strong>Date of Birth:</strong> ${member.DateofBirth}</p>
-              <p><strong>Spouse:</strong> ${member.SpouseName || '-'} (${member.SpouseDateofBirth || '-'})</p>
-              <p><strong>Children:</strong> ${[member.Child1Name, member.Child2Name, member.Child3Name].filter(Boolean).join(', ') || '-'}</p>
-              <p><strong>Contact:</strong> ${member.ContactNumber || '-'}, ${member.ContactEmail || '-'}</p>
-              <p><strong>Address:</strong> ${member.Address || '-'}</p>
-              <p><strong>Profession:</strong> ${member.Profession || '-'}</p>
-              <p><strong>Blood Group:</strong> ${member.BloodGroup || '-'}</p>
-              <p><strong>Native Place:</strong> ${member.NativePlaceIndia || '-'}</p>
-              <p><strong>Emergency Contacts (SA):</strong> ${member.EmergencyContactNameSA || '-'} - ${member.EmergencyContactNumberSA || '-'}</p>
-              <p><strong>Emergency Contacts (India):</strong> ${member.EmergencyContactNameIndia || '-'} - ${member.EmergencyContactNumberIndia || '-'}</p>
-            </div>
+            <p><strong>Name:</strong> <span>${member.NameSurname}</span></p>
+            <p><strong>Date of Birth:</strong> <span>${member.DateofBirth}</span></p>
+            <p><strong>Spouse:</strong> <span>${member.SpouseName || '-'} (${member.SpouseDateofBirth || '-'})</span></p>
+            <p><strong>Children:</strong> <span>${[member.Child1Name, member.Child2Name, member.Child3Name].filter(Boolean).join(', ') || '-'}</span></p>
+            <p><strong>Contact:</strong> <span>${member.ContactNumber || '-'}, ${member.ContactEmail || '-'}</span></p>
+            <p><strong>Address:</strong> <span>${member.Address || '-'}</span></p>
+            <p><strong>Profession:</strong> <span>${member.Profession || '-'}</span></p>
+            <p><strong>Blood Group:</strong> <span>${member.BloodGroup || '-'}</span></p>
+            <p><strong>Native Place:</strong> <span>${member.NativePlaceIndia || '-'}</span></p>
+            <p><strong>Emergency Contacts (SA):</strong> <span>${member.EmergencyContactNameSA || '-'} - ${member.EmergencyContactNumberSA || '-'}</span></p>
+            <p><strong>Emergency Contacts (India):</strong> <span>${member.EmergencyContactNameIndia || '-'} - ${member.EmergencyContactNumberIndia || '-'}</span></p>
           `;
 
-          // Update SEO metadata dynamically
           document.title = `${member.NameSurname} - Jain Sangh South Africa Member`;
           document.querySelector('meta[name="description"]').setAttribute('content', `Details for ${member.NameSurname}, member of Jain Sangh South Africa. Profession: ${member.Profession || '-'}, Contact: ${member.ContactNumber || member.ContactEmail || '-'}.`);
-
-          // Update structured data
-          const schema = {
-            "@context": "https://schema.org",
-            "@type": "Person",
-            "name": member.NameSurname,
-            "url": window.location.href,
-            "jobTitle": member.Profession || '',
-            "birthDate": member.DateofBirth || '',
-            "address": member.Address || '',
-            "telephone": member.ContactNumber || '',
-            "email": member.ContactEmail || '',
-            "spouse": member.SpouseName || '',
-            "children": [member.Child1Name, member.Child2Name, member.Child3Name].filter(Boolean)
-          };
-          document.getElementById('memberSchema').textContent = JSON.stringify(schema);
         } else {
           container.innerHTML = `<p>Member not found.</p>`;
         }
