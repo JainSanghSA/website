@@ -4,9 +4,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Jain Sangh South Africa - Member Detail</title>
+  <title>Member Details | Jain Sangh South Africa</title>
   <meta name="description"
     content="Detailed information about members of Jain Sangh South Africa including contact, profession, family details, and more." />
+  <meta name="keywords" content="Jain Sangh South Africa member, Jain community, Ahimsa, Satya, Dharma, member details" />
+  <link rel="canonical" href="https://www.yourdomain.com/member-detail.html" />
   <link rel="stylesheet" href="style.css" />
 </head>
 
@@ -44,44 +46,51 @@
     <span>&copy; 2025 Jain Sangh South Africa — Jai Jinendra 🪷</span>
     <div class="social-icons">
       <a href="https://www.facebook.com/share/1BD9UzPHHy/" target="_blank" aria-label="Facebook">
-        <img src="images/icons/facebook.svg" alt="Facebook">
+        <img src="images/icons/facebook.svg" alt="Facebook Icon">
       </a>
       <a href="https://www.instagram.com/southafricajainsangh/" target="_blank" aria-label="Instagram">
-        <img src="images/icons/instagram.svg" alt="Instagram">
+        <img src="images/icons/instagram.svg" alt="Instagram Icon">
       </a>
     </div>
   </footer>
 
+  <!-- Member Data Script -->
   <script>
     const urlParams = new URLSearchParams(window.location.search);
     const memberId = parseInt(urlParams.get('id'));
+    const container = document.getElementById('memberDetail');
 
     fetch('data/members.json')
       .then(response => response.json())
       .then(data => {
         const member = data.find(m => m.Id === memberId);
-        const container = document.getElementById('memberDetail');
 
-        if (member) {
-          container.innerHTML = `
-            <p><strong>Name:</strong> <span>${member.NameSurname}</span></p>
-            <p><strong>Date of Birth:</strong> <span>${member.DateofBirth}</span></p>
-            <p><strong>Spouse:</strong> <span>${member.SpouseName || '-'} (${member.SpouseDateofBirth || '-'})</span></p>
-            <p><strong>Children:</strong> <span>${[member.Child1Name, member.Child2Name, member.Child3Name].filter(Boolean).join(', ') || '-'}</span></p>
-            <p><strong>Contact:</strong> <span>${member.ContactNumber || '-'}, ${member.ContactEmail || '-'}</span></p>
-            <p><strong>Address:</strong> <span>${member.Address || '-'}</span></p>
-            <p><strong>Profession:</strong> <span>${member.Profession || '-'}</span></p>
-            <p><strong>Blood Group:</strong> <span>${member.BloodGroup || '-'}</span></p>
-            <p><strong>Native Place:</strong> <span>${member.NativePlaceIndia || '-'}</span></p>
-            <p><strong>Emergency Contacts (SA):</strong> <span>${member.EmergencyContactNameSA || '-'} - ${member.EmergencyContactNumberSA || '-'}</span></p>
-            <p><strong>Emergency Contacts (India):</strong> <span>${member.EmergencyContactNameIndia || '-'} - ${member.EmergencyContactNumberIndia || '-'}</span></p>
-          `;
-
-          document.title = `${member.NameSurname} - Jain Sangh South Africa Member`;
-          document.querySelector('meta[name="description"]').setAttribute('content', `Details for ${member.NameSurname}, member of Jain Sangh South Africa. Profession: ${member.Profession || '-'}, Contact: ${member.ContactNumber || member.ContactEmail || '-'}.`);
-        } else {
-          container.innerHTML = `<p>Member not found.</p>`;
+        if (!member) {
+          container.innerHTML = '<p>Member not found.</p>';
+          return;
         }
+
+        container.innerHTML = `
+          <p><strong>Name:</strong> <span>${member.NameSurname}</span></p>
+          <p><strong>Date of Birth:</strong> <span>${member.DateofBirth}</span></p>
+          <p><strong>Spouse:</strong> <span>${member.SpouseName || '-'} (${member.SpouseDateofBirth || '-'})</span></p>
+          <p><strong>Children:</strong> <span>${[member.Child1Name, member.Child2Name, member.Child3Name].filter(Boolean).join(', ') || '-'}</span></p>
+          <p><strong>Contact:</strong> <span>${member.ContactNumber || '-'}, ${member.ContactEmail || '-'}</span></p>
+          <p><strong>Address:</strong> <span>${member.Address || '-'}</span></p>
+          <p><strong>Profession:</strong> <span>${member.Profession || '-'}</span></p>
+          <p><strong>Blood Group:</strong> <span>${member.BloodGroup || '-'}</span></p>
+          <p><strong>Native Place:</strong> <span>${member.NativePlaceIndia || '-'}</span></p>
+          <p><strong>Emergency Contacts (SA):</strong> <span>${member.EmergencyContactNameSA || '-'} - ${member.EmergencyContactNumberSA || '-'}</span></p>
+          <p><strong>Emergency Contacts (India):</strong> <span>${member.EmergencyContactNameIndia || '-'} - ${member.EmergencyContactNumberIndia || '-'}</span></p>
+        `;
+
+        document.title = `${member.NameSurname} - Jain Sangh South Africa Member`;
+        document.querySelector('meta[name="description"]').setAttribute('content',
+          `Details for ${member.NameSurname}, member of Jain Sangh South Africa. Profession: ${member.Profession || '-'}, Contact: ${member.ContactNumber || member.ContactEmail || '-'}.`);
+      })
+      .catch(err => {
+        console.error('Error loading member data:', err);
+        container.innerHTML = '<p>Failed to load member data.</p>';
       });
   </script>
 </body>

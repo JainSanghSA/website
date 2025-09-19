@@ -3,7 +3,6 @@
 ========================= */
 body {
   margin: 0;
-  padding: 0;
   font-family: Arial, sans-serif;
   background: #fffdf8;
   color: #333;
@@ -22,8 +21,7 @@ img {
 header {
   background: #f6e7b4;
   color: #5a3c00;
-  text-align: center;
-  padding: 2rem 1rem;
+  padding: 1rem 1rem;
 }
 
 .header-content {
@@ -37,24 +35,18 @@ header {
 .header-content .logo {
   width: 80px;
   height: 80px;
-  object-fit: cover;
   border-radius: 50%;
+  object-fit: cover;
 }
 
-.header-text {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-header h1 {
+.header-text h1 {
   margin: 0;
-  font-size: 2.5rem;
+  font-size: 2.2rem;
 }
 
-header .tagline {
+.header-text .tagline {
+  margin-top: 0.3rem;
   font-style: italic;
-  margin-top: 0.5rem;
 }
 
 /* =========================
@@ -65,25 +57,25 @@ nav.main-nav {
   display: flex;
   justify-content: center;
   gap: 2rem;
-  padding: 1rem;
+  padding: 0.8rem;
   flex-wrap: wrap;
 }
 
-nav.main-nav a {
+nav a {
   text-decoration: none;
   color: #5a3c00;
   font-weight: bold;
   transition: color 0.3s, transform 0.3s;
 }
 
-nav.main-nav a:hover,
-nav.main-nav a:focus {
+nav a:hover,
+nav a:focus {
   color: #c19700;
   transform: scale(1.05);
   outline: none;
 }
 
-nav.main-nav a[aria-current="page"] {
+nav a[aria-current="page"] {
   text-decoration: underline;
 }
 
@@ -93,7 +85,7 @@ nav.main-nav a[aria-current="page"] {
 section {
   max-width: 1000px;
   margin: 2rem auto;
-  padding: 2rem 1rem;
+  padding: 1rem;
 }
 
 .intro-card,
@@ -102,17 +94,11 @@ section {
   border-radius: 10px;
   padding: 20px;
   margin-bottom: 20px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-  font-size: 1.1rem;
-}
-
-.intro-card strong {
-  font-size: 1.3rem;
-  font-weight: bold;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
 /* =========================
-   Member-detail card grid
+   Member-detail card
 ========================= */
 .member-card {
   display: grid;
@@ -121,7 +107,7 @@ section {
 }
 
 .member-card p {
-  margin: 0;
+  margin: 5px 0;
   display: contents;
 }
 
@@ -180,7 +166,8 @@ table {
   margin: 20px 0;
 }
 
-th, td {
+th,
+td {
   border: 1px solid #ccc;
   padding: 10px;
   text-align: left;
@@ -197,32 +184,12 @@ tr:nth-child(even) {
 .member-link {
   color: #007bff;
   text-decoration: none;
-  transition: color 0.3s;
 }
 
 .member-link:hover,
 .member-link:focus {
   text-decoration: underline;
   color: #0056b3;
-  outline: none;
-}
-
-/* =========================
-   Buttons
-========================= */
-.btn {
-  display: inline-block;
-  background-color: #f6e7b4;
-  color: #5a3c00;
-  padding: 12px 25px;
-  text-decoration: none;
-  font-weight: bold;
-  border-radius: 8px;
-  transition: 0.3s;
-}
-
-.btn:hover {
-  background-color: #e9d490;
 }
 
 /* =========================
@@ -234,10 +201,6 @@ footer {
   padding: 1.5rem 1rem;
   font-size: 0.9rem;
   color: #5a3c00;
-}
-
-footer a {
-  text-decoration: none;
 }
 
 footer .social-icons {
@@ -268,17 +231,13 @@ mark {
    Responsive
 ========================= */
 @media (max-width: 768px) {
-  section {
-    padding: 1.5rem;
-  }
-
   .header-content {
     flex-direction: column;
     gap: 10px;
   }
 
   header h1 {
-    font-size: 2rem;
+    font-size: 1.8rem;
   }
 
   nav.main-nav {
@@ -286,11 +245,18 @@ mark {
     gap: 1rem;
   }
 
-  table, thead, tbody, th, td, tr {
+  table,
+  thead,
+  tbody,
+  th,
+  td,
+  tr {
     display: block;
   }
 
-  thead tr { display: none; }
+  thead tr {
+    display: none;
+  }
 
   tr {
     margin-bottom: 15px;
@@ -312,6 +278,24 @@ mark {
     content: attr(data-label);
     font-weight: bold;
     color: #5a3c00;
+    flex: 1;
+  }
+
+  td span {
+    flex: 2;
+    text-align: right;
+  }
+
+  .member-card {
+    grid-template-columns: 1fr;
+  }
+
+  .member-card p strong {
+    grid-column: 1;
+  }
+
+  .member-card p span {
+    grid-column: 1;
   }
 }
 
@@ -329,18 +313,5 @@ mark {
   footer .social-icons a img {
     width: 28px;
     height: 28px;
-  }
-
-  .member-card {
-    grid-template-columns: 1fr;
-    gap: 8px 10px;
-  }
-
-  .member-card p strong {
-    white-space: normal;
-  }
-
-  .member-card p span {
-    word-wrap: break-word;
   }
 }
