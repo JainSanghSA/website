@@ -4,11 +4,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Members Directory | Jain Sangh South Africa</title>
+  <title>Jain Sangh South Africa - Members Directory</title>
   <meta name="description"
-    content="Explore the members of Jain Sangh South Africa. Find contact details, professions, and connect with families dedicated to Jain values of Ahimsa, Satya, and Dharma." />
-  <meta name="keywords" content="Jain Sangh South Africa members, Jain families, Jain community directory, Jain professionals, Ahimsa, Satya" />
-  <link rel="canonical" href="https://www.yourdomain.com/members.html" />
+    content="Explore the members of Jain Sangh South Africa. Find contact information, professions, and connect with our Jain community across South Africa." />
   <link rel="stylesheet" href="style.css" />
 </head>
 
@@ -16,7 +14,7 @@
   <!-- Header -->
   <header>
     <div class="header-content">
-      <img src="images/logo.jpg" alt="Jain Sangh South Africa Logo - Members Directory" class="logo">
+      <img src="images/logo.jpg" alt="Jain Sangh South Africa Logo" class="logo">
       <div class="header-text">
         <h1>Jain Sangh South Africa</h1>
         <p class="tagline">“Live and let live — the essence of Jainism.”</p>
@@ -33,10 +31,11 @@
   <!-- Main Section -->
   <main>
     <section>
-      <h2>Members Directory</h2>
-      <p>Search and explore the members of Jain Sangh South Africa. Connect with families and professionals committed
+      <h2>Our Members Directory</h2>
+      <p>Search and explore the members of Jain Sangh South Africa. Connect with families and professionals dedicated
         to Jain values of Ahimsa, Satya, and Dharma.</p>
 
+      <!-- Search bar -->
       <label for="searchInput">Search Members:</label>
       <input type="text" id="searchInput" placeholder="Search members..." />
 
@@ -63,6 +62,7 @@
   <!-- Footer -->
   <footer>
     <span>&copy; 2025 Jain Sangh South Africa — Jai Jinendra 🪷</span>
+    <span>Non Profit Organization Registration Number: 301-851 NOP</span>
     <div class="social-icons">
       <a href="https://www.facebook.com/share/1BD9UzPHHy/" target="_blank" aria-label="Facebook">
         <img src="images/icons/facebook.svg" alt="Facebook Icon">
@@ -73,7 +73,7 @@
     </div>
   </footer>
 
-  <!-- Members JSON Script -->
+  <!-- Member Search Script -->
   <script>
     const searchInput = document.getElementById('searchInput');
     const membersTable = document.getElementById('membersTable');
@@ -99,12 +99,12 @@
       data.forEach(member => {
         const row = document.createElement('tr');
         row.innerHTML = `
-          <td>${highlight(member.Id, searchTerm)}</td>
-          <td>${highlight(member.NameSurname, searchTerm)}</td>
-          <td>${highlight(member.DateofBirth, searchTerm)}</td>
-          <td>${highlight(member.ContactNumber || member.ContactEmail, searchTerm)}</td>
-          <td>${highlight(member.Profession || '-', searchTerm)}</td>
-          <td><a href="member-detail.html?id=${member.Id}" title="View details of ${member.NameSurname}" class="member-link">View Details</a></td>
+          <td data-label="#">${highlight(member.Id, searchTerm)}</td>
+          <td data-label="Name">${highlight(member.NameSurname, searchTerm)}</td>
+          <td data-label="Date of Birth">${highlight(member.DateofBirth, searchTerm)}</td>
+          <td data-label="Contact">${highlight(member.ContactNumber || member.ContactEmail, searchTerm)}</td>
+          <td data-label="Profession">${highlight(member.Profession || '-', searchTerm)}</td>
+          <td data-label="Details"><a href="member-detail.html?id=${member.Id}" title="View details of ${member.NameSurname}" class="member-link">View Details</a></td>
         `;
         membersTable.appendChild(row);
       });
