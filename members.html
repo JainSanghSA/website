@@ -5,7 +5,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Jain Sangh South Africa - Members Directory</title>
-  <meta name="description" content="Explore the members of Jain Sangh South Africa. Find contact information, professions, and connect with our Jain community across South Africa." />
+  <meta name="description"
+    content="Explore the members of Jain Sangh South Africa. Find contact information, professions, and connect with our Jain community across South Africa." />
   <link rel="stylesheet" href="style.css" />
 </head>
 
@@ -14,13 +15,15 @@
   <header>
     <div class="header-content">
       <img src="images/logo.jpg" alt="Jain Sangh South Africa Logo" class="logo">
-      <h1>Jain Sangh South Africa</h1>
+      <div class="header-text">
+        <h1>Jain Sangh South Africa</h1>
+        <p class="tagline">“Live and let live — the essence of Jainism.”</p>
+      </div>
     </div>
-    <p>“Live and let live — the essence of Jainism.”</p>
   </header>
 
   <!-- Navigation -->
-  <nav aria-label="Main Navigation">
+  <nav class="main-nav" aria-label="Main Navigation">
     <a href="index.html">Home</a>
     <a href="members.html" aria-current="page">Members</a>
   </nav>
@@ -36,29 +39,31 @@
       <label for="searchInput">Search Members:</label>
       <input type="text" id="searchInput" placeholder="Search members..." />
 
-      <table>
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Name</th>
-            <th>Date of Birth</th>
-            <th>Contact</th>
-            <th>Profession</th>
-            <th>Details</th>
-          </tr>
-        </thead>
-        <tbody id="membersTable">
-          <tr>
-            <td colspan="6">Loading members...</td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Name</th>
+              <th>Date of Birth</th>
+              <th>Contact</th>
+              <th>Profession</th>
+              <th>Details</th>
+            </tr>
+          </thead>
+          <tbody id="membersTable">
+            <tr>
+              <td colspan="6">Loading members...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </section>
   </main>
 
   <!-- Footer -->
   <footer>
-    &copy; 2025 Jain Sangh South Africa — Jai Jinendra 🪷
+    <span>&copy; 2025 Jain Sangh South Africa — Jai Jinendra 🪷</span>
     <div class="social-icons">
       <a href="https://www.facebook.com/share/1BD9UzPHHy/" target="_blank" aria-label="Facebook">
         <img src="images/icons/facebook.svg" alt="Facebook">
@@ -94,12 +99,12 @@
       data.forEach(member => {
         const row = document.createElement('tr');
         row.innerHTML = `
-          <td>${highlight(member.Id, searchTerm)}</td>
-          <td>${highlight(member.NameSurname, searchTerm)}</td>
-          <td>${highlight(member.DateofBirth, searchTerm)}</td>
-          <td>${highlight(member.ContactNumber || member.ContactEmail, searchTerm)}</td>
-          <td>${highlight(member.Profession || '-', searchTerm)}</td>
-          <td><a href="member-detail.html?id=${member.Id}" title="View details of ${member.NameSurname}" class="member-link">View Details</a></td>
+          <td data-label="#">${highlight(member.Id, searchTerm)}</td>
+          <td data-label="Name">${highlight(member.NameSurname, searchTerm)}</td>
+          <td data-label="Date of Birth">${highlight(member.DateofBirth, searchTerm)}</td>
+          <td data-label="Contact">${highlight(member.ContactNumber || member.ContactEmail, searchTerm)}</td>
+          <td data-label="Profession">${highlight(member.Profession || '-', searchTerm)}</td>
+          <td data-label="Details"><a href="member-detail.html?id=${member.Id}" title="View details of ${member.NameSurname}" class="member-link">View Details</a></td>
         `;
         membersTable.appendChild(row);
       });
