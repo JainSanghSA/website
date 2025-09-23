@@ -45,10 +45,10 @@
           <tr>
             <th>#</th>
             <th>Name</th>
-            <th>Date of Birth</th>
+            <!-- <th>Date of Birth</th> -->
             <th>Contact</th>
             <th>Profession</th>
-            <th>Details</th>
+            <!-- <th>Details</th> -->
           </tr>
         </thead>
         <tbody id="membersTable">
@@ -102,10 +102,10 @@
         row.innerHTML = `
           <td data-label="#">${highlight(member.Id, searchTerm)}</td>
           <td data-label="Name">${highlight(member.NameSurname, searchTerm)}</td>
-          <td data-label="Date of Birth">${highlight(member.DateofBirth, searchTerm)}</td>
+          <!-- <td data-label="Date of Birth">${highlight(member.DateofBirth, searchTerm)}</td> -->
           <td data-label="Contact">${highlight(member.ContactNumber || member.ContactEmail, searchTerm)}</td>
           <td data-label="Profession">${highlight(member.Profession || '-', searchTerm)}</td>
-          <td data-label="Details"><a href="member-detail.html?id=${member.Id}" title="View details of ${member.NameSurname}" class="member-link">View Details</a></td>
+          <!-- <td data-label="Details"><a href="member-detail.html?id=${member.Id}" title="View details of ${member.NameSurname}" class="member-link">View Details</a></td> -->
         `;
         membersTable.appendChild(row);
       });
