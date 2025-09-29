@@ -21,15 +21,16 @@ img {
 header {
   background: #f6e7b4;
   color: #5a3c00;
-  padding: 1rem 1rem;
+  padding: 0.8rem 1rem; /* adjusted padding */
 }
 
 .header-content {
   display: flex;
-  align-items: center;
+  align-items: center; /* keeps logo & text aligned */
   justify-content: center;
   gap: 15px;
   flex-wrap: wrap;
+  text-align: center;
 }
 
 .header-content .logo {
@@ -37,6 +38,14 @@ header {
   height: 80px;
   border-radius: 50%;
   object-fit: cover;
+  flex-shrink: 0; /* prevents squishing */
+  vertical-align: middle;
+}
+
+.header-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* vertically aligns text with logo */
 }
 
 .header-text h1 {
@@ -47,6 +56,8 @@ header {
 .header-text .tagline {
   margin-top: 0.3rem;
   font-style: italic;
+  font-size: 1rem;
+  color: #6b4500;
 }
 
 /* =========================
@@ -201,6 +212,10 @@ footer {
   padding: 1.5rem 1rem;
   font-size: 0.9rem;
   color: #5a3c00;
+}
+
+footer span strong {
+  color: #8b5e00;
 }
 
 footer .social-icons {
