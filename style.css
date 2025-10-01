@@ -27,7 +27,7 @@ header {
   background: linear-gradient(135deg, #fff6e0, #f7e3aa);
   color: #5a2e00;
   padding: 1.2rem 1rem;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
 }
 
 .header-content {
@@ -47,7 +47,7 @@ header {
   border: 3px solid #c19700;
   flex-shrink: 0;
   margin-top: 5px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
 .header-text {
@@ -119,7 +119,7 @@ section {
   padding: 20px;
   margin-bottom: 20px;
   border-left: 6px solid #a53f2b;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.06);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.06);
   position: relative;
   overflow: hidden;
 }
@@ -135,7 +135,8 @@ section {
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
-  opacity: 0.3; /* darker watermark */
+  opacity: 0.3;
+  /* darker watermark */
   transform: translate(-50%, -50%);
   pointer-events: none;
 }
@@ -148,7 +149,7 @@ section {
   padding: 20px;
   margin-bottom: 20px;
   border-left: 6px solid #a53f2b;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.06);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.06);
   display: grid;
   grid-template-columns: max-content 1fr;
   gap: 10px 20px;
@@ -289,7 +290,8 @@ mark {
 @media (max-width: 768px) {
   .header-content {
     flex-direction: column;
-    align-items: center; /* center logo and text */
+    align-items: center;
+    /* center logo and text */
     gap: 10px;
   }
 
@@ -331,4 +333,56 @@ mark {
     width: 28px;
     height: 28px;
   }
+}
+
+/* =========================
+   Events List Styling
+========================= */
+.events-list li {
+  position: relative;
+  padding-left: 1.6em;
+  margin-bottom: 0.8rem;
+  font-weight: 500;
+}
+
+.events-list li::before {
+  content: "📅";
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: 1.2rem;
+  color: #a53f2b;
+}
+
+/* =========================
+   Features List Styling
+========================= */
+.features-list li::before {
+  content: "📚";
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: 1.2rem;
+  color: #a53f2b;
+}
+
+/* =========================
+   Pathshala Schedule Table
+========================= */
+.schedule-table {
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+  background: #fffdf3;
+}
+
+.schedule-table th {
+  background: #f1d179;
+  color: #5a2e00;
+  font-weight: 600;
+  text-align: left;
+}
+
+.schedule-table td {
+  background: #fffdf3;
 }
