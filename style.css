@@ -340,19 +340,22 @@ mark {
 ========================= */
 .events-list li {
   position: relative;
-  padding-left: 1.6em;
+  padding-left: 2em; /* more space for the icon */
   margin-bottom: 0.8rem;
   font-weight: 500;
 }
 
 .events-list li::before {
-  content: "📅";
+  content: "";
   position: absolute;
   left: 0;
   top: 0;
-  font-size: 1.2rem;
-  color: #a53f2b;
+  width: 1.5em;   /* size of the icon */
+  height: 1.5em;
+  background: url('images/icons/calendar.svg') no-repeat center;
+  background-size: contain;
 }
+
 
 /* =========================
    Features List Styling
