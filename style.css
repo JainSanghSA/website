@@ -25,16 +25,26 @@ a {
 ========================= */
 .mantra-banner {
   text-align: center;
-  background: linear-gradient(135deg, #fff6e0, #f7e3aa); /* same as header */
-  color: #7c4500; /* same as header text */
+  background: linear-gradient(135deg, #fff6e0, #f7e3aa);
+  color: #7c4500;
   font-weight: 600;
-  font-size: 0.95rem; /* slightly smaller than before */
-  padding: 6px 10px; /* slightly reduced padding */
+  font-size: 0.95rem;
+  /* default for desktop */
+  padding: 6px 10px;
   font-family: "Noto Sans Devanagari", "Segoe UI", Arial, sans-serif;
-  text-shadow: 0 0 3px #f1d179; /* subtle glow */
+  text-shadow: 0 0 3px #f1d179;
+  word-wrap: break-word;
 }
 
-
+/* Mobile adjustments */
+@media (max-width: 480px) {
+  .mantra-banner {
+    font-size: 0.85rem;
+    /* slightly smaller on mobile */
+    padding: 4px 8px;
+    line-height: 1.3;
+  }
+}
 
 
 /* =========================
