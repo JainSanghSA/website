@@ -21,42 +21,30 @@ a {
 }
 
 /* =========================
-   Top Mantra Banner
+   Header + Mantra
 ========================= */
+header {
+  background: linear-gradient(135deg, #fff6e0, #f7e3aa);
+  color: #5a2e00;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  padding: 0;
+  /* spacing handled in inner elements */
+}
+
+/* Mantra banner */
 .mantra-banner {
   text-align: center;
-  background: linear-gradient(135deg, #fff6e0, #f7e3aa);
-  color: #7c4500;
   font-weight: 600;
-  font-size: 0.95rem;
-  /* default for desktop */
-  padding: 6px 10px;
+  font-size: 0.9rem;
+  /* desktop default */
+  padding: 4px 10px;
+  color: #7c4500;
   font-family: "Noto Sans Devanagari", "Segoe UI", Arial, sans-serif;
   text-shadow: 0 0 3px #f1d179;
   word-wrap: break-word;
 }
 
-/* Mobile adjustments */
-@media (max-width: 480px) {
-  .mantra-banner {
-    font-size: 0.85rem;
-    /* slightly smaller on mobile */
-    padding: 4px 8px;
-    line-height: 1.3;
-  }
-}
-
-
-/* =========================
-   Header
-========================= */
-header {
-  background: linear-gradient(135deg, #fff6e0, #f7e3aa);
-  color: #5a2e00;
-  padding: 1.2rem 1rem;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
-}
-
+/* Header content (logo + text) */
 .header-content {
   display: flex;
   align-items: flex-start;
@@ -64,8 +52,10 @@ header {
   gap: 15px;
   flex-wrap: wrap;
   text-align: center;
+  padding: 10px 1rem 15px;
 }
 
+/* Logo styling */
 .header-content .logo {
   width: 90px;
   height: 90px;
@@ -75,14 +65,11 @@ header {
   flex-shrink: 0;
   margin-top: 5px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: width 0.3s, height 0.3s;
+  /* smooth resizing */
 }
 
-.header-text {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-}
-
+/* Header text */
 .header-text h1 {
   margin: 0;
   font-size: 2.3rem;
@@ -96,6 +83,51 @@ header {
   font-size: 1.05rem;
   color: #5f3900;
 }
+
+/* =========================
+   Responsive Styles
+========================= */
+@media (max-width: 768px) {
+  .mantra-banner {
+    font-size: 0.85rem;
+    padding: 3px 8px;
+  }
+
+  .header-content {
+    padding: 8px 1rem 12px;
+  }
+
+  .header-content .logo {
+    width: 70px;
+    height: 70px;
+  }
+
+  header h1 {
+    font-size: 1.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .mantra-banner {
+    font-size: 0.8rem;
+    padding: 2px 6px;
+    line-height: 1.3;
+  }
+
+  .header-content {
+    padding: 6px 0 10px;
+  }
+
+  .header-content .logo {
+    width: 60px;
+    height: 60px;
+  }
+
+  header h1 {
+    font-size: 1.6rem;
+  }
+}
+
 
 /* =========================
    Navigation
