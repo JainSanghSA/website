@@ -21,6 +21,23 @@ a {
 }
 
 /* =========================
+   Top Mantra Banner
+========================= */
+.mantra-banner {
+  text-align: center;
+  background: linear-gradient(135deg, #fff6e0, #f7e3aa); /* same as header */
+  color: #7c4500; /* same as header text */
+  font-weight: 600;
+  font-size: 0.95rem; /* slightly smaller than before */
+  padding: 6px 10px; /* slightly reduced padding */
+  font-family: "Noto Sans Devanagari", "Segoe UI", Arial, sans-serif;
+  text-shadow: 0 0 3px #f1d179; /* subtle glow */
+}
+
+
+
+
+/* =========================
    Header
 ========================= */
 header {
@@ -340,7 +357,8 @@ mark {
 ========================= */
 .events-list li {
   position: relative;
-  padding-left: 2em; /* more space for the icon */
+  padding-left: 2em;
+  /* more space for the icon */
   margin-bottom: 0.8rem;
   font-weight: 500;
 }
@@ -350,7 +368,8 @@ mark {
   position: absolute;
   left: 0;
   top: 0;
-  width: 1.5em;   /* size of the icon */
+  width: 1.5em;
+  /* size of the icon */
   height: 1.5em;
   background: url('images/icons/calendar.svg') no-repeat center;
   background-size: contain;
