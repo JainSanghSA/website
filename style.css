@@ -413,3 +413,54 @@ mark {
 .schedule-table td {
   background: #fffdf3;
 }
+
+/* =========================
+   IMAGE ADJUSTMENTS FOR MOBILE
+========================= */
+@media (max-width: 768px) {
+  .header-content {
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 10px !important;
+  }
+
+  .header-side-img {
+    width: 60px !important;
+    height: 60px !important;
+  }
+
+  .header-content .logo {
+    width: 70px !important;
+    height: 70px !important;
+  }
+
+  .header-text h1 {
+    font-size: 1.6rem !important;
+    text-align: center !important;
+  }
+
+  .header-text .tagline {
+    font-size: 0.9rem !important;
+    text-align: center !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-side-img {
+    width: 50px !important;
+    height: 50px !important;
+  }
+
+  .header-content .logo {
+    width: 60px !important;
+    height: 60px !important;
+  }
+
+  .header-text h1 {
+    font-size: 1.4rem !important;
+  }
+
+  .header-text .tagline {
+    font-size: 0.8rem !important;
+  }
+}
