@@ -444,3 +444,77 @@ mark {
 .schedule-table td {
   background: #fffdf3;
 }
+
+/* =========================
+   Responsive Member Table (Mobile Fix)
+   — Added enhancement (non-destructive)
+========================= */
+
+@media (max-width: 768px) {
+
+  /* Make table elements behave as stacked cards */
+  table,
+  thead,
+  tbody,
+  th,
+  td,
+  tr {
+    display: block;
+  }
+
+  thead {
+    display: none;
+    /* Hide header row */
+  }
+
+  tr {
+    margin-bottom: 1rem;
+    background: #fffdf3;
+    border: 1px solid #f1d179;
+    border-radius: 10px;
+    padding: 0.6rem 0.8rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  }
+
+  td {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.4rem 0;
+    border: none;
+    border-bottom: 1px solid #f9efc4;
+    font-size: 0.95rem;
+  }
+
+  td:last-child {
+    border-bottom: none;
+  }
+
+  td::before {
+    content: attr(data-label);
+    font-weight: 600;
+    color: #7a291c;
+    text-transform: capitalize;
+    margin-right: 0.6rem;
+  }
+
+  /* Make mark highlight look natural */
+  mark {
+    background: #f9ed69;
+    border-radius: 3px;
+    padding: 0 3px;
+  }
+
+  /* Adjust font size for small screens */
+  @media (max-width: 480px) {
+    td {
+      font-size: 0.9rem;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    td::before {
+      margin-bottom: 0.2rem;
+    }
+  }
+}
